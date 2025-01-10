@@ -109,18 +109,21 @@ public class AddBook extends javax.swing.JFrame {
         String title=jTextField1.getText();
         String author=jTextField2.getText();
         String isbn=jTextField3.getText();
-        int quantity=Integer.parseInt(jTextField4.getText());
+        //int quantity=Integer.parseInt(jTextField4.getText());
         AbstractAction action=null;
         
          try {
+        int quantity=Integer.parseInt(jTextField4.getText());
         Connection con = ConnectionProvider.getCon(); 
         action = new AddBookAction(con, title, author, isbn, quantity);
         action.execute(); 
-    } catch (HeadlessException e) {
-        JOptionPane.showMessageDialog(null, "Error connecting to database: " + e.getMessage());
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "Please enter a valid number for quantity.");
     }
+         catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Please enter a valid number for quantity.");
+    }catch (Exception e) {
+    JOptionPane.showMessageDialog(null, "Error connecting to the database: " + e.getMessage());
+    }    
+      
         
         
         

@@ -20,12 +20,15 @@ import javax.swing.table.DefaultTableModel;
 
 public class ViewBooks extends javax.swing.JFrame {
 
+    private Connection con;
+
     /**
      * Creates new form ViewBooks
      */
     public ViewBooks() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //Connection con = ConnectionProvider.getCon();
     }
 
     /**
@@ -70,7 +73,7 @@ public class ViewBooks extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 220, 780, 260));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 190, 1150, 390));
 
         jButton1.setText("Dashboard");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -91,10 +94,23 @@ public class ViewBooks extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
         
-            Connection con = ConnectionProvider.getCon();
+        try {
+        con = ConnectionProvider.getCon(); // Assign to instance variable
+        if (con != null && !con.isClosed()) {
             ViewBooksAction action = new ViewBooksAction(con);
             action.execute();
             jTable1.setModel(action.getTableModel());
+        } else {
+            JOptionPane.showMessageDialog(this, "Unable to establish database connection");
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage());
+    }
+        
+           /* Connection con = ConnectionProvider.getCon();
+            ViewBooksAction action = new ViewBooksAction(con);
+            action.execute();
+            jTable1.setModel(action.getTableModel());*/
         
     }//GEN-LAST:event_formComponentShown
 
@@ -102,8 +118,10 @@ public class ViewBooks extends javax.swing.JFrame {
         // TODO add your handling code here:
         int userId = CurrentUser.getInstance().getUserId(); 
         String role = null;
+        //Connection con = ConnectionProvider.getCon();
+        
 
-        try (Connection con = ConnectionProvider.getCon()) {
+        try (Connection con = ConnectionProvider.getCon();) {
             if (con == null || con.isClosed()) {
                 throw new SQLException("Connection is closed or invalid");
             }

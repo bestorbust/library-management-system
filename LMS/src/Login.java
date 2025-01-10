@@ -77,6 +77,7 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 360, -1, -1));
 
+        jButton2.setBackground(new java.awt.Color(0, 0, 0));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 51, 51));
         jButton2.setText("REGISTER");
@@ -135,10 +136,9 @@ public class Login extends javax.swing.JFrame {
         FindUserRoleAction action = new FindUserRoleAction(con,userId);
         action.execute();
         String role=action.getRole();
+        
 
-        if (    null == role) {
-            JOptionPane.showMessageDialog(null, "Role not recognized.");
-        } else  switch (role) {
+          switch (role) {
                     case "admin":
                         setVisible(false);
                         new AdminDashboard().setVisible(true);

@@ -48,3 +48,4 @@ SELECT * FROM roles;
 SELECT * FROM users;
 SELECT * FROM books;
 SELECT * FROM borrows;
+update books set quantity=0 where id=1;

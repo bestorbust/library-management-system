@@ -1,7 +1,6 @@
 
 import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
 import javax.swing.JOptionPane;
 
 /*
@@ -27,9 +26,9 @@ public class AddUserAction extends AbstractAction{
     public void execute(){
     try {
         String roleQuery = "SELECT id FROM roles WHERE role_name = ?";
-        java.sql.PreparedStatement rolePst = connection.prepareStatement(roleQuery);
+        PreparedStatement rolePst = connection.prepareStatement(roleQuery);
         rolePst.setString(1, role);
-        java.sql.ResultSet rs = rolePst.executeQuery();
+        ResultSet rs = rolePst.executeQuery();
 
         if (rs.next()) {
             int roleId = rs.getInt("id");

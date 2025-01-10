@@ -16,12 +16,14 @@ import project.ConnectionProvider;
  * @author User
  */
 public class Record extends javax.swing.JFrame {
+    private Connection connection;
 
     /**
      * Creates new form Record
      */
     public Record() {
         initComponents();
+        connection=ConnectionProvider.getCon();
     }
 
     /**
@@ -68,7 +70,7 @@ public class Record extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 690, 260));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 800, 260));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/resources/stats.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -85,12 +87,14 @@ public class Record extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
-        try(Connection con = ConnectionProvider.getCon();){
-            loadBorrowDetails(con);
-        }
-        catch(SQLException e){
+        try {
+            // Get a new connection if needed
+            if (connection == null || connection.isClosed()) {
+                connection = ConnectionProvider.getCon();
+            }
+            loadBorrowDetails(connection);
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error loading statistics: " + e.getMessage());
-   
         }
     }//GEN-LAST:event_formComponentShown
     private void loadBorrowDetails(Connection con)throws SQLException{

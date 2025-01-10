@@ -4,10 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/User/OneDrive/Documents/NetBeansProjects/LMS/src/project/ConnectionProvider.java</file>
-            <file>file:/C:/Users/User/OneDrive/Documents/NetBeansProjects/LMS/src/ViewBooks.java</file>
-            <file>file:/C:/Users/User/OneDrive/Documents/NetBeansProjects/LMS/src/login1.java</file>
+            <file>file:/C:/Users/User/OneDrive/Documents/NetBeansProjects/LMS/src/AddBook.java</file>
+            <file>file:/C:/Users/User/OneDrive/Documents/NetBeansProjects/LMS/src/Login.java</file>
+            <file>file:/C:/Users/User/OneDrive/Documents/NetBeansProjects/LMS/src/Action.java</file>
             <file>file:/C:/Users/User/OneDrive/Documents/NetBeansProjects/LMS/src/AbstractAction.java</file>
-            <file>file:/C:/Users/User/OneDrive/Documents/NetBeansProjects/LMS/src/ViewBooksAction.java</file>
+            <file>file:/C:/Users/User/OneDrive/Documents/NetBeansProjects/LMS/src/AddBookAction.java</file>
+            <file>file:/C:/Users/User/OneDrive/Documents/NetBeansProjects/LMS/src/NewUser1.java</file>
         </group>
     </open-files>
 </project-private>

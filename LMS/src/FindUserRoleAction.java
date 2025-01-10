@@ -10,17 +10,16 @@ import java.sql.*;
  */
 public class FindUserRoleAction extends AbstractAction {
     
-
     private int userId;
     private String role;
     
-    public FindUserRoleAction(Connection connection,int userId){
+    public FindUserRoleAction(Connection connection, int userId) {
         super(connection);
-        this.userId=userId;
+        this.userId = userId;
     }
+    
     @Override
-    public void execute(){
-        String roleName = null;
+    public void execute() {
         String query = "SELECT roles.role_name FROM users " +
                        "JOIN roles ON users.role_id = roles.id " +
                        "WHERE users.id = ?";
@@ -30,15 +29,14 @@ public class FindUserRoleAction extends AbstractAction {
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
-                roleName = rs.getString("role_name");
+                role = rs.getString("role_name"); 
             }
         } catch (SQLException e) {
             System.err.println("Error fetching role: " + e.getMessage());
         }
-        
-        role=roleName;
     }
-    public String getRole(){
+    
+    public String getRole() {
         return role;
     }
 }

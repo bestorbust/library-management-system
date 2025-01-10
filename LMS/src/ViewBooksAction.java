@@ -16,6 +16,7 @@ import java.sql.SQLException;
 
 public class ViewBooksAction extends AbstractAction {
     private DefaultTableModel tableModel;
+    
 
     public ViewBooksAction(Connection connection) {
         super(connection);

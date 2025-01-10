@@ -8,15 +8,11 @@
  * @author User
  */
 import java.sql.*;
+
 public abstract class AbstractAction implements Action{
     protected Connection connection;
     
     public AbstractAction(Connection connection){
         this.connection=connection;
     }
-
-    
-
-   
-    
 }
